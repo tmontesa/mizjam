@@ -1,0 +1,6 @@
+[gd_scene load_steps=2 format=2]
+
+[ext_resource path="res://HUD/DebugHUD.gd" type="Script" id=1]
+
+[node name="DebugHUD" type="CanvasLayer"]
+script = ExtResource( 1 )
