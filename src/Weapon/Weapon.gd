@@ -5,71 +5,32 @@ extends Node2D
 # -------------------------------------
 
 onready var animator = $Animator
-onready var projectile_patterns = [
-{
-	type = Database.Projectile.get("Slash"),
-	speed = 0,
-	chain = [
-	{
-		type = Database.Projectile.get("Strike"),
-		lifetime = 1.0,
-		chain = [
-{
-	type = Database.Projectile.get("Slash"),
-	speed = 3,
-	chain = [
-	{
-		type = Database.Projectile.get("Strike"),
-		lifetime = 1.0
-	}
-	]
-},
-{
-	type = Database.Projectile.get("Slash"),
-	rot_add = -15,
-	speed = 0,
-	chain = [
-	{
-		type = Database.Projectile.get("Strike"),
-		lifetime = 1.0
-	}
-	]
-},
-{
-	type = Database.Projectile.get("Slash"),
-	rot_add = 15,
-	speed = 0,
-	chain = [
-	{
-		type = Database.Projectile.get("Strike"),
-		lifetime = 1.0
-	}
-	]
-}
-]
-	}
-	]
-},
-{
-	type = Database.Projectile.get("Slash"),
-	rot_add = -15,
-	speed = 3,
-	chain = [
-	{
-		type = Database.Projectile.get("Strike"),
-		lifetime = 1.0
-	}
-	]
-},
-{
-	type = Database.Projectile.get("Slash"),
-	rot_add = 15,
-	speed = 3,
-	chain = [
-	{
-		type = Database.Projectile.get("Strike"),
-		lifetime = 1.0
-	}
-	]
-}
-]
+onready var projectile_spawner = $ProjectileSpawner
+onready var delay_timer = $Delay
+var projectile_patterns = []
+
+# -------------------------------------
+# Vars
+# -------------------------------------
+
+var attack_type = "stab"
+var delay = 0.5
+
+# -------------------------------------
+# Overrides
+# -------------------------------------
+
+func _ready():
+	delay_timer.wait_time = delay
+
+# -------------------------------------
+# Methods
+# -------------------------------------
+
+func attack():
+	if (delay_timer.time_left == 0):
+		animator.stop()
+		animator.play(attack_type)
+		delay_timer.start()
+		projectile_spawner.spawn(global_position, rotation, projectile_patterns)
+

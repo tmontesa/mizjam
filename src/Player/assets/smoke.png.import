@@ -2,15 +2,15 @@
 
 importer="texture"
 type="StreamTexture"
-path="res://.import/pig.png-d6e2f0461e0271a77090804902d8b838.stex"
+path="res://.import/smoke.png-53e33d72f9b2f232d52fad0ca35a0c71.stex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://Pet/assets/pig.png"
-dest_files=[ "res://.import/pig.png-d6e2f0461e0271a77090804902d8b838.stex" ]
+source_file="res://Player/assets/smoke.png"
+dest_files=[ "res://.import/smoke.png-53e33d72f9b2f232d52fad0ca35a0c71.stex" ]
 
 [params]
 

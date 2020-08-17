@@ -13,9 +13,21 @@ _global_script_classes=[ {
 "class": "DB",
 "language": "GDScript",
 "path": "res://Database/Database.class.gd"
+}, {
+"base": "Reference",
+"class": "WeightedEntry",
+"language": "GDScript",
+"path": "res://WeaponGenerator/WeightedEntry.gd"
+}, {
+"base": "Reference",
+"class": "WeightedSet",
+"language": "GDScript",
+"path": "res://WeaponGenerator/WeightedSet.gd"
 } ]
 _global_script_class_icons={
-"DB": ""
+"DB": "",
+"WeightedEntry": "",
+"WeightedSet": ""
 }
 
 [application]
@@ -86,6 +98,11 @@ move_down={
 attack={
 "deadzone": 0.5,
 "events": [ Object(InputEventMouseButton,"resource_local_to_scene":false,"resource_name":"","device":0,"alt":false,"shift":false,"control":false,"meta":false,"command":false,"button_mask":0,"position":Vector2( 0, 0 ),"global_position":Vector2( 0, 0 ),"factor":1.0,"button_index":1,"pressed":false,"doubleclick":false,"script":null)
+ ]
+}
+dodge={
+"deadzone": 0.5,
+"events": [ Object(InputEventKey,"resource_local_to_scene":false,"resource_name":"","device":0,"alt":false,"shift":false,"control":false,"meta":false,"command":false,"pressed":false,"scancode":16777237,"unicode":0,"echo":false,"script":null)
  ]
 }
 

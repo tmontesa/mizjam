@@ -18,8 +18,12 @@ func _ready():
 func _physics_process(delta: float) -> void:
 	position += velocity
 
-
 func _on_expiry() -> void:
 	if (chained_projectile_patterns != []):
 		emit_signal("chain", global_position, rotation, chained_projectile_patterns)
 	queue_free()
+
+
+func _on_hit(body: Node) -> void:
+	if (body.is_in_group("enemies")):
+		body.queue_free()

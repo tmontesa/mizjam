@@ -2,15 +2,15 @@
 
 importer="texture"
 type="StreamTexture"
-path="res://.import/pig.png-d6e2f0461e0271a77090804902d8b838.stex"
+path="res://.import/hammer_test.png-9fec541430df633dfebc5d52c9508e8e.stex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://Pet/assets/pig.png"
-dest_files=[ "res://.import/pig.png-d6e2f0461e0271a77090804902d8b838.stex" ]
+source_file="res://Weapon/assets/hammer_test.png"
+dest_files=[ "res://.import/hammer_test.png-9fec541430df633dfebc5d52c9508e8e.stex" ]
 
 [params]
 
