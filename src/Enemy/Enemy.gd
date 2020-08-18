@@ -1,36 +1,30 @@
-extends KinematicBody2D
+extends Character
 
-onready var stats = $Stats
-var target = null
-var speed = 70
+# ======================================
+# Node References
+# ======================================
 
-var velocity = Vector2.ZERO
-var direction = Vector2.ZERO
+var target: Node2D = null
 
-var is_moving
+# ======================================
+# Private Methods: Movement
+# ======================================
 
-func _physics_process(delta: float) -> void:
-	if (target != null):
-		direction = (target.position - position).normalized()
-	else:
-		direction = Vector2.ZERO
+func _update_direction() -> void:
+	if (target == null): return
+	direction = (target.position - position).normalized()
 
-	if (direction == Vector2.ZERO):
-		var friction = stats.friction
-		velocity = velocity.move_toward(Vector2.ZERO, friction * delta)
-		is_moving = false
-	else:
-		var max_speed = stats.max_speed
-		var acceleration = stats.acceleration
-		velocity = velocity.move_toward(direction * max_speed, acceleration * delta)
-		is_moving = true
+# ======================================
+# Private Methods: Detection
+# ======================================
 
-	move_and_slide(velocity)
 
-func _on_body_detected(body: Node) -> void:
-	if (body.name == "Player"):
+func _on_detect(body: Node) -> void:
+	if (body.is_in_group("player")):
 		target = body
 
-func _on_body_undetected(body: Node) -> void:
+
+func _on_undetect(body: Node) -> void:
 	if (body == target):
 		target = null
+		direction = Vector2.ZERO

@@ -9,6 +9,21 @@
 config_version=4
 
 _global_script_classes=[ {
+"base": "KinematicBody2D",
+"class": "Character",
+"language": "GDScript",
+"path": "res://Character/Character.gd"
+}, {
+"base": "Node",
+"class": "CharacterStats",
+"language": "GDScript",
+"path": "res://Character/CharacterStats.gd"
+}, {
+"base": "Node",
+"class": "CharacterTimers",
+"language": "GDScript",
+"path": "res://Character/CharacterTimers.gd"
+}, {
 "base": "Reference",
 "class": "DB",
 "language": "GDScript",
@@ -17,14 +32,17 @@ _global_script_classes=[ {
 "base": "Reference",
 "class": "WeightedEntry",
 "language": "GDScript",
-"path": "res://WeaponGenerator/WeightedEntry.gd"
+"path": "res://WeightedSet/WeightedEntry.gd"
 }, {
 "base": "Reference",
 "class": "WeightedSet",
 "language": "GDScript",
-"path": "res://WeaponGenerator/WeightedSet.gd"
+"path": "res://WeightedSet/WeightedSet.gd"
 } ]
 _global_script_class_icons={
+"Character": "",
+"CharacterStats": "",
+"CharacterTimers": "",
 "DB": "",
 "WeightedEntry": "",
 "WeightedSet": ""

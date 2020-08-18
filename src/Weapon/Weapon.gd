@@ -1,36 +1,43 @@
 extends Node2D
 
-# -------------------------------------
+# ======================================
 # Node References
-# -------------------------------------
+# ======================================
 
 onready var animator = $Animator
+onready var stats = $Stats
 onready var projectile_spawner = $ProjectileSpawner
-onready var delay_timer = $Delay
-var projectile_patterns = []
 
-# -------------------------------------
+# ======================================
 # Vars
-# -------------------------------------
+# ======================================
 
-var attack_type = "stab"
-var delay = 0.5
+var is_attacking: bool = false
 
-# -------------------------------------
-# Overrides
-# -------------------------------------
-
-func _ready():
-	delay_timer.wait_time = delay
-
-# -------------------------------------
+# ======================================
 # Methods
-# -------------------------------------
+# ======================================
 
-func attack():
-	if (delay_timer.time_left == 0):
-		animator.stop()
-		animator.play(attack_type)
-		delay_timer.start()
-		projectile_spawner.spawn(global_position, rotation, projectile_patterns)
+func attack() -> void:
+	if (!is_attacking):
+		is_attacking = true
+		_play_animation()
+		projectile_spawner.initiate()
 
+# ======================================
+# Private Methods
+# ======================================
+
+func _play_animation() -> void:
+	animator.play("buildup", 0, stats.buildup_speed)
+
+func _on_animation_end(anim_name: String) -> void:
+	if (anim_name == "buildup"):
+		animator.play("attack", 0, stats.attack_speed)
+
+	elif (anim_name == "attack"):
+		animator.play("drawback", 0, stats.delay_speed)
+
+	elif (anim_name == "drawback"):
+		animator.play("idle", 0, 0)
+		is_attacking = false
