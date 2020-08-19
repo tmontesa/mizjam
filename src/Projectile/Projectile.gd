@@ -35,5 +35,8 @@ func _on_hit(body: Node) -> void:
 		body.damage(damage)
 		body.knockback(direction * knockback)
 
-		if (detonate):
-			_on_expiry()
+	if (detonate && !body.is_in_group("player")):
+		lifetime_timer.wait_time = 0.1
+		lifetime_timer.start()
+		velocity *= 0.2
+		detonate = false

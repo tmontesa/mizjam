@@ -52,6 +52,7 @@ _global_script_class_icons={
 
 config/name="Mizjam"
 run/main_scene="res://World/Testing.tscn"
+boot_splash/bg_color=Color( 0.0431373, 0.0431373, 0.0431373, 1 )
 config/icon="res://icon.png"
 
 [autoload]

@@ -40,7 +40,7 @@ func _process(delta: float) -> void:
 	_animate()
 
 	# TEMP
-	$Label.text = str(stats.health)
+	$ProgressBar.value = stats.health
 
 # ======================================
 # Methods

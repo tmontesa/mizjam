@@ -10,7 +10,7 @@ onready var weapon = $Weapon
 # Vars
 # ======================================
 
-const weapon_distance: float = 16.0
+const weapon_distance: float = 8.0
 
 var is_dodging: bool = false
 
@@ -63,10 +63,12 @@ func _get_friction() -> float:
 func _dodge() -> void:
 	is_dodging = true
 	sprite.modulate = Color(0, 0, 0, 0.2)
+	collision_shape.disabled = true
 	timers.dodge.start()
 
 func _dodge_end() -> void:
 	is_dodging = false
+	collision_shape.disabled = false
 	sprite.modulate = Color(1, 1, 1, 1)
 
 # ======================================

@@ -16,27 +16,27 @@ var projectile_pattern = [
 	type = "Slash",
 	lifetime = 5,
 	speed = 5,
-	knockback = 150,
+	knockback = 130,
 	detonate = true,
 	chain = [
 	{
 		type = "Strike",
 		lifetime = 0.2,
 		scale = Vector2(3, 3),
-		knockback = 50,
+		knockback = 10,
 		chain = [
 			{
 				type = "Stab",
 				lifetime = 0.2,
 				speed = -1.5,
-				scale = Vector2(1, 3),
-				knockback = -100,
+				scale = Vector2(1, 2),
+				knockback = -20,
 				chain = [
 				{
 					type = "Strike",
 					lifetime = 0.2,
-					scale = Vector2(1, 1),
-					knockback = 100,
+					scale = Vector2(1.5, 1.5),
+					knockback = 20,
 				}
 				]
 			},
@@ -44,15 +44,15 @@ var projectile_pattern = [
 				type = "Stab",
 				lifetime = 0.2,
 				speed = -1.5,
-				scale = Vector2(1, 3),
-				knockback = -100,
-				rotate = 15,
+				scale = Vector2(1, 2),
+				knockback = -20,
+				rotate = 120,
 				chain = [
 				{
 					type = "Strike",
 					lifetime = 0.2,
-					scale = Vector2(1, 1),
-					knockback = 100,
+					scale = Vector2(1.5, 1.5),
+					knockback = 20,
 				}
 				]
 			},
@@ -60,15 +60,15 @@ var projectile_pattern = [
 				type = "Stab",
 				lifetime = 0.2,
 				speed = -1.5,
-				scale = Vector2(1, 3),
-				knockback = -100,
-				rotate = -15,
+				scale = Vector2(1, 2),
+				knockback = -20,
+				rotate = -120,
 				chain = [
 				{
 					type = "Strike",
 					lifetime = 0.2,
-					scale = Vector2(1, 1),
-					knockback = 100,
+					scale = Vector2(1.5, 1.5),
+					knockback = 20,
 				}
 				]
 			}
@@ -103,7 +103,7 @@ func spawn(position_, rotation_, patterns) -> void:
 		# Assign mandatory variables
 		projectile.damage = weapon.stats.damage
 		projectile.position = position_
-		projectile.rotation = rotation_ + pattern.get("rotate", 0.0)
+		projectile.rotation = rotation_ + deg2rad(pattern.get("rotate", 0.0))
 
 		# Assign other variables
 		projectile.scale = pattern.get("scale", Vector2(2, 2))
