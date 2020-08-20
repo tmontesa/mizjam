@@ -1,7 +1,6 @@
-[gd_scene load_steps=9 format=2]
+[gd_scene load_steps=8 format=2]
 
 [ext_resource path="res://Weapon/Weapon.gd" type="Script" id=1]
-[ext_resource path="res://Weapon/WeaponStats.gd" type="Script" id=2]
 [ext_resource path="res://Weapon/assets/test_sword.png" type="Texture" id=3]
 [ext_resource path="res://ProjectileSpawner/ProjectileSpawner.tscn" type="PackedScene" id=4]
 
@@ -28,7 +27,7 @@ tracks/1/imported = false
 tracks/1/enabled = true
 tracks/1/keys = {
 "times": PoolRealArray( 0, 1 ),
-"transitions": PoolRealArray( -4, 1 ),
+"transitions": PoolRealArray( 2, 1 ),
 "update": 0,
 "values": [ -180.0, 90.0 ]
 }
@@ -167,7 +166,8 @@ script = ExtResource( 1 )
 [node name="ProjectileSpawner" parent="." instance=ExtResource( 4 )]
 
 [node name="Sprite" type="Sprite" parent="."]
-rotation = -0.785398
+position = Vector2( 2.52, 0.72 )
+rotation = -1.15061
 texture = ExtResource( 3 )
 offset = Vector2( 7.88693, -6.29463 )
 
@@ -177,11 +177,4 @@ anims/attack = SubResource( 1 )
 anims/buildup = SubResource( 2 )
 anims/drawback = SubResource( 3 )
 anims/idle = SubResource( 4 )
-
-[node name="Stats" type="Node" parent="."]
-script = ExtResource( 2 )
-buildup_time = 0.05
-attack_time = 0.1
-delay_time = 0.8
-damage = 5.0
 [connection signal="animation_finished" from="Animator" to="." method="_on_animation_end"]

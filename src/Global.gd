@@ -1,5 +1,21 @@
 extends Node
 
+enum rarity {
+	COMMON = 0,
+	UNCOMMON = 1,
+	RARE = 2,
+	EPIC = 3,
+	LEGENDARY = 4
+}
+
+var rarity_color = [
+	Color(0.2, 0.2, 0.2, 1),
+	Color(0.2, 0.8, 0.2, 1),
+	Color(0.2, 0.2, 0.8, 1),
+	Color(0.8, 0.0, 0.8, 1),
+	Color(0.8, 0.2, 0.2, 1),
+]
+
 var rng = RandomNumberGenerator.new()
 
 func _ready():

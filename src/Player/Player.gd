@@ -1,10 +1,15 @@
 extends Character
 
+signal weapon_index_changed
+signal weapons_changed
+
 # ======================================
 # Node References
 # ======================================
 
-onready var weapon = $Weapon
+var weapons = [null, null, null]
+var weapon_index = 0
+var weapon = weapons[weapon_index]
 
 # ======================================
 # Vars
@@ -25,6 +30,34 @@ func _physics_process(delta: float) -> void:
 func _process(_delta: float) -> void:
 	_animate()
 	_position_weapon()
+
+func _ready() -> void:
+	weapons[0] = WeaponGenerator.generate(0)
+	weapons[1] = WeaponGenerator.generate(0)
+	weapons[2] = WeaponGenerator.generate(0)
+	weapon = weapons[0]
+
+	# NOTE: Super hacky
+	# Need to ready all 3 weapons for its texture
+	# But don't need right now
+	add_child(weapons[0])
+	add_child(weapons[1])
+	add_child(weapons[2])
+	remove_child(weapons[1])
+	remove_child(weapons[2])
+
+# ======================================
+# Methods
+# ======================================
+
+func swap_weapon(new_weapon):
+	var old_weapon = weapon
+	remove_child(old_weapon)
+	add_child(new_weapon)
+	weapons[weapon_index] = new_weapon
+	weapon = weapons[weapon_index]
+	emit_signal("weapons_changed")
+	return old_weapon
 
 # ======================================
 # Private Methods: Movement
@@ -80,6 +113,24 @@ func _check_input() -> void:
 		_dodge()
 	if (Input.is_action_pressed("attack")):
 		_attack()
+	if (Input.is_action_just_pressed("item_1")):
+		remove_child(weapon)
+		weapon = weapons[0]
+		add_child(weapon)
+		weapon_index = 0
+		emit_signal("weapon_index_changed")
+	if (Input.is_action_just_pressed("item_2")):
+		remove_child(weapon)
+		weapon = weapons[1]
+		add_child(weapon)
+		weapon_index = 1
+		emit_signal("weapon_index_changed")
+	if (Input.is_action_just_pressed("item_3")):
+		remove_child(weapon)
+		weapon = weapons[2]
+		add_child(weapon)
+		weapon_index = 2
+		emit_signal("weapon_index_changed")
 
 # ======================================
 # Private Methods: Weapon

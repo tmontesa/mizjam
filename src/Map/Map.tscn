@@ -1,0 +1,28 @@
+[gd_scene load_steps=3 format=2]
+
+[ext_resource path="res://Map/assets/Tileset.tres" type="TileSet" id=1]
+[ext_resource path="res://Map/assets/TilesetNoCollision.tres" type="TileSet" id=2]
+
+[node name="Map" type="Node2D"]
+
+[node name="Background" type="TileMap" parent="."]
+modulate = Color( 1, 1, 1, 0.25098 )
+tile_set = ExtResource( 2 )
+cell_size = Vector2( 16, 16 )
+format = 1
+tile_data = PoolIntArray( -393227, -1610612736, 327684 )
+
+[node name="Props" type="TileMap" parent="."]
+tile_set = ExtResource( 1 )
+cell_size = Vector2( 16, 16 )
+cell_custom_transform = Transform2D( 16, 0, 0, 16, 0, 0 )
+format = 1
+
+[node name="Entities" type="YSort" parent="."]
+
+[node name="Foreground" type="TileMap" parent="."]
+modulate = Color( 1, 1, 1, 0.25098 )
+tile_set = ExtResource( 2 )
+cell_size = Vector2( 16, 16 )
+format = 1
+tile_data = PoolIntArray( -393227, -1610612736, 327684 )

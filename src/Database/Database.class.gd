@@ -32,12 +32,12 @@ func _init(resource_directory_: String):
 	while(filename):
 		if !directory.current_is_dir():
 			resource = load(resource_directory + "/" + filename)
-			name = filename.get_basename()
-
-			_item_ids.append(name)
-			_items[name] = resource
-			_item_count += 1
-			print("Added to database: " + name)
+			if (filename.get_extension() != "import"):
+				name = filename.get_basename()
+				_item_ids.append(name)
+				_items[name] = resource
+				_item_count += 1
+				#print("Added to database: " + name)
 		filename = directory.get_next()
 
 	print("Done. Added " + str(_item_count) + " entries to database.\n")

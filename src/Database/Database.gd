@@ -4,6 +4,12 @@ onready var Db = load("res://Database/Database.class.gd")
 onready var Projectile = Db.new("res://Projectile/Projectiles")
 onready var Enemies = Db.new("res://Enemy/Enemies")
 
+onready var WeaponTextures = {
+	Sword = Db.new("res://Weapon/assets/Sword"),
+	Spear = Db.new("res://Weapon/assets/Spear"),
+	Hammer = Db.new("res://Weapon/assets/Hammer"),
+}
+
 onready var Prop = {
 	Tree = Db.new("res://Prop/Tree"),
 	Rock = Db.new("res://Prop/Rock"),
