@@ -8,13 +8,18 @@ var weapon: Node2D = null
 var destination: Node2D = null
 
 # ======================================
+# Vars
+# ======================================
+
+const accuracy_penalty_base = 180
+
+# ======================================
 # Overrides
 # ======================================
 
 func _ready() -> void:
 	weapon = get_parent()
 	destination = weapon.get_parent().get_parent()
-	# TODO: Assign better
 
 # ======================================
 # Methods
@@ -33,6 +38,8 @@ func spawn(position_, rotation_, patterns) -> void:
 		projectile.damage = weapon.damage
 		projectile.position = position_
 		projectile.rotation = rotation_ + deg2rad(pattern.get("rotate", 0.0))
+		var accuracy_penalty = deg2rad(accuracy_penalty_base - (accuracy_penalty_base * weapon.accuracy))
+		projectile.rotation += accuracy_penalty * Global.rng.randf_range(-1, 1)
 
 		# Assign other variables
 		projectile.scale = pattern.get("scale", Vector2(2, 2))
@@ -49,6 +56,7 @@ func spawn(position_, rotation_, patterns) -> void:
 
 		# Spawn to game node
 		destination.add_child(projectile)
+
 
 
 

@@ -2,22 +2,24 @@ extends Character
 
 signal weapon_index_changed
 signal weapons_changed
+signal game_over
 
 # ======================================
 # Node References
 # ======================================
 
+onready var audio_player = $AudioPlayer
 var weapons = [null, null, null]
-var weapon_index = 0
-var weapon = weapons[weapon_index]
+var weapon = weapons[0]
 
 # ======================================
 # Vars
 # ======================================
 
 const weapon_distance: float = 8.0
-
+var weapon_index = 0
 var is_dodging: bool = false
+var is_dodge_recovered: bool = true
 
 # ======================================
 # Overrides
@@ -46,6 +48,8 @@ func _ready() -> void:
 	remove_child(weapons[1])
 	remove_child(weapons[2])
 
+	health = stats.max_health
+
 # ======================================
 # Methods
 # ======================================
@@ -58,6 +62,23 @@ func swap_weapon(new_weapon):
 	weapon = weapons[weapon_index]
 	emit_signal("weapons_changed")
 	return old_weapon
+
+func kill():
+	emit_signal("game_over")
+
+func damage(value: float) -> void:
+	health = int(clamp(health - value, -1, stats.max_health))
+
+	if (value > 0):
+		audio_player.play_sound("hurt")
+
+	if (health <= 0):
+		kill()
+
+	_update_health_bar()
+
+	_spawn_damage_number(value)
+
 
 # ======================================
 # Private Methods: Movement
@@ -95,23 +116,31 @@ func _get_friction() -> float:
 
 func _dodge() -> void:
 	is_dodging = true
+	is_dodge_recovered = false
 	sprite.modulate = Color(0, 0, 0, 0.2)
-	collision_shape.disabled = true
+	#collision_shape.disabled = true
+	audio_player.play_sound("dodge")
 	timers.dodge.start()
+	timers.dodge_recovery.start()
 
 func _dodge_end() -> void:
 	is_dodging = false
-	collision_shape.disabled = false
+	#collision_shape.disabled = false
+
+
+func _on_dodge_recovery() -> void:
+	is_dodge_recovered = true
 	sprite.modulate = Color(1, 1, 1, 1)
+
 
 # ======================================
 # Private Methods: Input
 # ======================================
 
 func _check_input() -> void:
-	if (Input.is_action_just_pressed("dodge")):
+	if (Input.is_action_just_pressed("dodge") && is_dodge_recovered):
 		_dodge()
-	if (Input.is_action_pressed("attack")):
+	if (Input.is_action_pressed("attack") && is_dodge_recovered):
 		_attack()
 	if (Input.is_action_just_pressed("item_1")):
 		remove_child(weapon)
@@ -144,5 +173,23 @@ func _position_weapon() -> void:
 func _attack() -> void:
 	weapon.attack()
 	pass
+
+func _spawn_damage_number(value):
+	var damage_text = DamageText.instance()
+	get_parent().add_child(damage_text)
+	damage_text.damage(abs(value))
+	damage_text.position = global_position + Vector2(0, -16) + Vector2(Global.rng.randf_range(-4 , 4), Global.rng.randf_range(-4 , 4))
+
+	if (value > 0):
+		damage_text.modulate = Color(1, 0, 0, 1)
+	else:
+		damage_text.modulate = Color(0.1, 0.8, 0.1, 1)
+
+	var s = Global.rng.randf_range(0.2, 0.3) + (0.5 * (abs(value)/50))
+	if (value < 0):
+		s += .2
+	damage_text.scale = Vector2(s, s)
+
+
 
 

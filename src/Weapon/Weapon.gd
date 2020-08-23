@@ -7,6 +7,7 @@ extends Node2D
 onready var sprite = $Sprite
 onready var animator = $Animator
 onready var projectile_spawner = $ProjectileSpawner
+onready var audio_player = $AudioPlayer
 
 # ======================================
 # Vars
@@ -41,14 +42,16 @@ func attack() -> void:
 # ======================================
 
 func _ready() -> void:
+	var sprite_frame = Global.rng.randi() % 5
 	if (type == "sword"):
-		sprite.texture = Database.WeaponTextures.Sword.get_random()
+		sprite.frame = sprite_frame
 	elif (type == "spear"):
-		sprite.texture = Database.WeaponTextures.Spear.get_random()
+		sprite.frame = 5 + sprite_frame
 	elif (type == "hammer"):
-		sprite.texture = Database.WeaponTextures.Hammer.get_random()
+		sprite.frame = 10 + sprite_frame
 
 	sprite.modulate = Global.rarity_color[rarity]
+	audio_player.set_audio(type)
 
 # ======================================
 # Private Methods
@@ -61,6 +64,7 @@ func _on_animation_end(anim_name: String) -> void:
 	if (anim_name == "buildup"):
 		animator.play("attack", 0, 8)
 		projectile_spawner.initiate()
+		audio_player.play()
 
 	elif (anim_name == "attack"):
 		animator.play("drawback", 0, base_delay / delay)

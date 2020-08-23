@@ -1,13 +1,28 @@
 extends Node2D
 
 onready var pickup_text = $PickupText
+onready var lifetime_timer = $Lifetime
 var weapon = null
 var target = null
 
 func _ready() -> void:
-	weapon = WeaponGenerator.generate()
+	var v = Global.rng.randi() % 100
+	var r = 0
+
+	if (v > 95):
+		r = 4
+	elif (v > 85):
+		r = 3
+	elif (v > 65):
+		r = 2
+	elif (v > 35):
+		r = 1
+
+	weapon = WeaponGenerator.generate(r)
 	add_child(weapon)
 	pickup_text.update_text(weapon)
+
+	lifetime_timer.start()
 
 func _process(_delta):
 	if (target == null): return
@@ -21,7 +36,6 @@ func _process(_delta):
 		old_weapon.rotation = 0
 		old_weapon.position = Vector2(0, 0)
 		pickup_text.update_text(weapon)
-
 
 
 func _on_area_entry(body: Node) -> void:
@@ -39,3 +53,7 @@ func _on_mouse_entry() -> void:
 
 func _on_mouse_exit() -> void:
 	pickup_text.visible = false
+
+
+func on_expiry() -> void:
+	queue_free()

@@ -51,7 +51,7 @@ _global_script_class_icons={
 [application]
 
 config/name="Mizjam"
-run/main_scene="res://World/Testing.tscn"
+run/main_scene="res://Screen/TitleScreen.tscn"
 boot_splash/bg_color=Color( 0.0431373, 0.0431373, 0.0431373, 1 )
 config/icon="res://icon.png"
 
@@ -149,4 +149,5 @@ item_3={
 [rendering]
 
 quality/2d/use_pixel_snap=true
+environment/default_clear_color=Color( 0.2, 0.176471, 0.145098, 1 )
 environment/default_environment="res://default_env.tres"

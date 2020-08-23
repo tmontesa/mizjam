@@ -18,9 +18,9 @@ func _init(resource_directory_: String):
 	print("Creating database from: " + resource_directory)
 
 	var directory = Directory.new()
-	if (!directory.dir_exists(resource_directory)):
-		print("Directory does not exist: " + resource_directory)
-		return
+#	if (!directory.dir_exists(resource_directory)):
+#		print("Directory does not exist: " + resource_directory)
+#		return
 
 	directory.open(resource_directory)
 	directory.list_dir_begin()
@@ -31,13 +31,14 @@ func _init(resource_directory_: String):
 
 	while(filename):
 		if !directory.current_is_dir():
-			resource = load(resource_directory + "/" + filename)
 			if (filename.get_extension() != "import"):
+				resource = load(resource_directory + "/" + filename)
+
 				name = filename.get_basename()
 				_item_ids.append(name)
 				_items[name] = resource
 				_item_count += 1
-				#print("Added to database: " + name)
+				print("Added to database: " + name)
 		filename = directory.get_next()
 
 	print("Done. Added " + str(_item_count) + " entries to database.\n")

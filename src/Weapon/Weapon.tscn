@@ -1,7 +1,8 @@
-[gd_scene load_steps=8 format=2]
+[gd_scene load_steps=9 format=2]
 
 [ext_resource path="res://Weapon/Weapon.gd" type="Script" id=1]
-[ext_resource path="res://Weapon/assets/test_sword.png" type="Texture" id=3]
+[ext_resource path="res://Weapon/AudioPlayer.gd" type="Script" id=2]
+[ext_resource path="res://Weapon/assets/weapons.png" type="Texture" id=3]
 [ext_resource path="res://ProjectileSpawner/ProjectileSpawner.tscn" type="PackedScene" id=4]
 
 [sub_resource type="Animation" id=1]
@@ -170,6 +171,8 @@ position = Vector2( 2.52, 0.72 )
 rotation = -1.15061
 texture = ExtResource( 3 )
 offset = Vector2( 7.88693, -6.29463 )
+vframes = 4
+hframes = 5
 
 [node name="Animator" type="AnimationPlayer" parent="."]
 autoplay = "idle"
@@ -177,4 +180,8 @@ anims/attack = SubResource( 1 )
 anims/buildup = SubResource( 2 )
 anims/drawback = SubResource( 3 )
 anims/idle = SubResource( 4 )
+
+[node name="AudioPlayer" type="AudioStreamPlayer2D" parent="."]
+volume_db = -2.0
+script = ExtResource( 2 )
 [connection signal="animation_finished" from="Animator" to="." method="_on_animation_end"]

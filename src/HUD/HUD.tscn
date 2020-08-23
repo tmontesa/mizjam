@@ -1,60 +1,257 @@
-[gd_scene load_steps=12 format=2]
+[gd_scene load_steps=24 format=2]
 
-[ext_resource path="res://Weapon/assets/test_sword.png" type="Texture" id=1]
+[ext_resource path="res://Weapon/assets/weapons.png" type="Texture" id=1]
 [ext_resource path="res://PressStart2P.ttf" type="DynamicFontData" id=2]
 [ext_resource path="res://ItemText/ItemText.tscn" type="PackedScene" id=3]
 [ext_resource path="res://HUD/InventorySlot.gd" type="Script" id=4]
 [ext_resource path="res://HUD/HUD.gd" type="Script" id=5]
+[ext_resource path="res://HUD/Difficulty.tscn" type="PackedScene" id=6]
+[ext_resource path="res://HUD/Warning.gd" type="Script" id=7]
 
-[sub_resource type="StyleBoxFlat" id=2]
-bg_color = Color( 0.384314, 0, 0, 1 )
-
-[sub_resource type="StyleBoxFlat" id=3]
-bg_color = Color( 0, 0, 0, 0.25098 )
-
-[sub_resource type="DynamicFont" id=4]
+[sub_resource type="DynamicFont" id=1]
 size = 8
 font_data = ExtResource( 2 )
 
-[sub_resource type="StyleBoxFlat" id=5]
+[sub_resource type="DynamicFont" id=2]
+size = 4
+font_data = ExtResource( 2 )
+
+[sub_resource type="StyleBoxFlat" id=3]
+bg_color = Color( 0.560784, 0.0588235, 0.0588235, 1 )
+
+[sub_resource type="StyleBoxFlat" id=4]
+bg_color = Color( 0, 0, 0, 0.25098 )
+
+[sub_resource type="DynamicFont" id=5]
+size = 8
+font_data = ExtResource( 2 )
+
+[sub_resource type="StyleBoxEmpty" id=6]
+content_margin_left = 0.0
+content_margin_right = 4.0
+content_margin_top = 0.0
+content_margin_bottom = 0.0
+
+[sub_resource type="DynamicFontData" id=7]
+font_path = "res://PressStart2P.ttf"
+
+[sub_resource type="DynamicFont" id=8]
+size = 4
+outline_color = Color( 0, 0, 0, 1 )
+font_data = SubResource( 7 )
+
+[sub_resource type="StyleBoxEmpty" id=9]
+content_margin_left = 4.0
+content_margin_right = 0.0
+content_margin_top = 0.0
+content_margin_bottom = 0.0
+
+[sub_resource type="DynamicFont" id=10]
+size = 4
+outline_color = Color( 0, 0, 0, 1 )
+font_data = SubResource( 7 )
+
+[sub_resource type="StyleBoxFlat" id=11]
+content_margin_left = 0.0
+content_margin_right = 0.0
+content_margin_top = 0.0
+content_margin_bottom = 0.0
+bg_color = Color( 0.784314, 0.521569, 0, 1 )
+expand_margin_bottom = 3.0
+
+[sub_resource type="StyleBoxFlat" id=12]
+bg_color = Color( 0, 0, 0, 0.25098 )
+expand_margin_bottom = 3.0
+
+[sub_resource type="StyleBoxFlat" id=13]
 resource_local_to_scene = true
 content_margin_left = 4.0
-content_margin_right = 4.0
+content_margin_right = 20.0
 content_margin_top = 4.0
 content_margin_bottom = 4.0
 bg_color = Color( 0, 0, 0, 0.25098 )
 
-[sub_resource type="StyleBoxFlat" id=6]
+[sub_resource type="StyleBoxFlat" id=14]
 resource_local_to_scene = true
 content_margin_left = 4.0
-content_margin_right = 4.0
+content_margin_right = 20.0
 content_margin_top = 4.0
 content_margin_bottom = 4.0
 bg_color = Color( 0, 0, 0, 0.25098 )
 
-[sub_resource type="StyleBoxFlat" id=1]
+[sub_resource type="StyleBoxFlat" id=15]
 resource_local_to_scene = true
 content_margin_left = 4.0
-content_margin_right = 4.0
+content_margin_right = 20.0
 content_margin_top = 4.0
 content_margin_bottom = 4.0
 bg_color = Color( 0, 0, 0, 0.25098 )
+
+[sub_resource type="DynamicFont" id=16]
+font_data = ExtResource( 2 )
 
 [node name="HUD" type="CanvasLayer"]
 script = ExtResource( 5 )
 
-[node name="ProgressBar" type="ProgressBar" parent="."]
+[node name="Warning" type="VBoxContainer" parent="."]
+visible = false
+anchor_left = 0.5
+anchor_right = 0.5
+margin_left = -212.0
+margin_top = 24.0
+margin_right = 212.0
+margin_bottom = 44.0
+alignment = 1
+script = ExtResource( 7 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Title" type="Label" parent="Warning"]
+margin_top = 2.0
+margin_right = 424.0
+margin_bottom = 10.0
+custom_fonts/font = SubResource( 1 )
+text = "You are now Level 99!"
+align = 1
+
+[node name="Subtitle" type="Label" parent="Warning"]
+margin_top = 14.0
+margin_right = 424.0
+margin_bottom = 18.0
+custom_fonts/font = SubResource( 2 )
+text = "You are now more agile and have grown more resilient."
+align = 1
+
+[node name="Lifetime" type="Timer" parent="Warning"]
+wait_time = 5.0
+one_shot = true
+
+[node name="HealthBar" type="ProgressBar" parent="."]
+anchor_top = 1.0
+anchor_bottom = 1.0
+margin_left = 8.0
+margin_top = -40.0
+margin_right = 88.0
+margin_bottom = -32.0
+custom_styles/fg = SubResource( 3 )
+custom_styles/bg = SubResource( 4 )
+custom_fonts/font = SubResource( 5 )
+percent_visible = false
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="LoopNumber" type="Label" parent="."]
+anchor_top = 1.0
+anchor_bottom = 1.0
+margin_left = 48.0
+margin_top = -40.0
+margin_right = 88.0
+margin_bottom = -32.0
+size_flags_horizontal = 3
+custom_styles/normal = SubResource( 6 )
+custom_fonts/font = SubResource( 8 )
+custom_colors/font_color = Color( 1, 1, 1, 0.501961 )
+text = "LV99"
+align = 2
+valign = 1
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="HealthPoints" type="Label" parent="."]
+anchor_top = 1.0
+anchor_bottom = 1.0
+margin_left = 8.0
+margin_top = -40.0
+margin_right = 88.0
+margin_bottom = -32.0
+grow_horizontal = 2
+custom_styles/normal = SubResource( 9 )
+custom_fonts/font = SubResource( 10 )
+text = "999/999"
+valign = 1
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="ScoreLabel" type="Label" parent="."]
 anchor_left = 1.0
 anchor_top = 1.0
 anchor_right = 1.0
 anchor_bottom = 1.0
-margin_left = -96.0
-margin_top = -20.0
-margin_right = -16.0
-margin_bottom = -12.0
-custom_styles/fg = SubResource( 2 )
-custom_styles/bg = SubResource( 3 )
-custom_fonts/font = SubResource( 4 )
+margin_left = -88.0
+margin_top = -32.0
+margin_right = -8.0
+margin_bottom = -24.0
+grow_horizontal = 2
+custom_styles/normal = SubResource( 9 )
+custom_fonts/font = SubResource( 10 )
+text = "Score"
+align = 2
+valign = 1
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="LoopProgress" type="ProgressBar" parent="."]
+anchor_right = 1.0
+margin_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+size_flags_horizontal = 3
+custom_styles/fg = SubResource( 11 )
+custom_styles/bg = SubResource( 12 )
+value = 77.0
+percent_visible = false
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="LoopPoints" type="Label" parent="."]
+anchor_left = 0.5
+anchor_right = 0.5
+margin_left = -32.0
+margin_right = 32.0
+margin_bottom = 4.0
+grow_horizontal = 2
+custom_fonts/font = SubResource( 10 )
+text = "999/999"
+align = 1
+valign = 1
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="DifficultyContainer" type="CenterContainer" parent="."]
+modulate = Color( 1, 0, 0, 1 )
+anchor_right = 1.0
+margin_bottom = 24.0
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Difficulty" type="HBoxContainer" parent="DifficultyContainer"]
+margin_left = 192.0
+margin_top = 4.0
+margin_right = 208.0
+margin_bottom = 20.0
+custom_constants/separation = -4
+
+[node name="Control" parent="DifficultyContainer/Difficulty" instance=ExtResource( 6 )]
+
+[node name="NextWaveTime" type="Label" parent="."]
+anchor_left = 0.5
+anchor_right = 0.5
+margin_left = -32.0
+margin_right = 32.0
+margin_bottom = 24.0
+grow_horizontal = 2
+custom_fonts/font = SubResource( 10 )
+text = "99999"
+align = 1
+valign = 1
 __meta__ = {
 "_edit_use_anchors_": false
 }
@@ -62,10 +259,10 @@ __meta__ = {
 [node name="HUDElements" type="MarginContainer" parent="."]
 anchor_top = 1.0
 anchor_bottom = 1.0
-margin_left = 16.0
-margin_top = -36.0
-margin_right = 96.0
-margin_bottom = -12.0
+margin_left = 8.0
+margin_top = -28.0
+margin_right = 88.0
+margin_bottom = -4.0
 __meta__ = {
 "_edit_use_anchors_": false
 }
@@ -81,7 +278,7 @@ __meta__ = {
 [node name="Slot1" type="PanelContainer" parent="HUDElements/Inventory"]
 margin_right = 24.0
 margin_bottom = 24.0
-custom_styles/panel = SubResource( 5 )
+custom_styles/panel = SubResource( 13 )
 script = ExtResource( 4 )
 
 [node name="ItemText" parent="HUDElements/Inventory/Slot1" instance=ExtResource( 3 )]
@@ -89,18 +286,17 @@ visible = false
 position = Vector2( 272, 24 )
 scale = Vector2( 0.4, 0.4 )
 
-[node name="Sprite" type="TextureRect" parent="HUDElements/Inventory/Slot1"]
-margin_left = 4.0
-margin_top = 4.0
-margin_right = 20.0
-margin_bottom = 20.0
+[node name="Sprite" type="Sprite" parent="HUDElements/Inventory/Slot1"]
+position = Vector2( 12, 12 )
 texture = ExtResource( 1 )
+vframes = 4
+hframes = 5
 
 [node name="Slot2" type="PanelContainer" parent="HUDElements/Inventory"]
 margin_left = 28.0
 margin_right = 52.0
 margin_bottom = 24.0
-custom_styles/panel = SubResource( 6 )
+custom_styles/panel = SubResource( 14 )
 script = ExtResource( 4 )
 
 [node name="ItemText" parent="HUDElements/Inventory/Slot2" instance=ExtResource( 3 )]
@@ -108,18 +304,17 @@ visible = false
 position = Vector2( 244, 24 )
 scale = Vector2( 0.4, 0.4 )
 
-[node name="Sprite" type="TextureRect" parent="HUDElements/Inventory/Slot2"]
-margin_left = 4.0
-margin_top = 4.0
-margin_right = 20.0
-margin_bottom = 20.0
+[node name="Sprite" type="Sprite" parent="HUDElements/Inventory/Slot2"]
+position = Vector2( 12, 12 )
 texture = ExtResource( 1 )
+vframes = 4
+hframes = 5
 
 [node name="Slot3" type="PanelContainer" parent="HUDElements/Inventory"]
 margin_left = 56.0
 margin_right = 80.0
 margin_bottom = 24.0
-custom_styles/panel = SubResource( 1 )
+custom_styles/panel = SubResource( 15 )
 script = ExtResource( 4 )
 
 [node name="ItemText" parent="HUDElements/Inventory/Slot3" instance=ExtResource( 3 )]
@@ -127,9 +322,32 @@ visible = false
 position = Vector2( 216, 24 )
 scale = Vector2( 0.4, 0.4 )
 
-[node name="Sprite" type="TextureRect" parent="HUDElements/Inventory/Slot3"]
-margin_left = 4.0
-margin_top = 4.0
-margin_right = 20.0
-margin_bottom = 20.0
+[node name="Sprite" type="Sprite" parent="HUDElements/Inventory/Slot3"]
+position = Vector2( 13, 12 )
 texture = ExtResource( 1 )
+vframes = 4
+hframes = 5
+
+[node name="Score" type="Label" parent="."]
+anchor_left = 1.0
+anchor_top = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+margin_left = -152.0
+margin_top = -20.0
+margin_right = -8.0
+margin_bottom = -4.0
+custom_fonts/font = SubResource( 16 )
+text = "999999999"
+align = 2
+valign = 2
+__meta__ = {
+"_edit_use_anchors_": false
+}
+[connection signal="timeout" from="Warning/Lifetime" to="Warning" method="_on_expiry"]
+[connection signal="mouse_entered" from="HUDElements/Inventory/Slot1" to="HUDElements/Inventory/Slot1" method="_on_mouse_entry"]
+[connection signal="mouse_exited" from="HUDElements/Inventory/Slot1" to="HUDElements/Inventory/Slot1" method="_on_mouse_exit"]
+[connection signal="mouse_entered" from="HUDElements/Inventory/Slot2" to="HUDElements/Inventory/Slot2" method="_on_mouse_entry"]
+[connection signal="mouse_exited" from="HUDElements/Inventory/Slot2" to="HUDElements/Inventory/Slot2" method="_on_mouse_exit"]
+[connection signal="mouse_entered" from="HUDElements/Inventory/Slot3" to="HUDElements/Inventory/Slot3" method="_on_mouse_entry"]
+[connection signal="mouse_exited" from="HUDElements/Inventory/Slot3" to="HUDElements/Inventory/Slot3" method="_on_mouse_exit"]

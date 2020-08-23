@@ -1,0 +1,21 @@
+[remap]
+
+importer="wav"
+type="AudioStreamSample"
+path="res://.import/game_over.wav-2036fb010170c562b9809787a5d25c21.sample"
+
+[deps]
+
+source_file="res://Screen/assets/game_over.wav"
+dest_files=[ "res://.import/game_over.wav-2036fb010170c562b9809787a5d25c21.sample" ]
+
+[params]
+
+force/8_bit=false
+force/mono=false
+force/max_rate=false
+force/max_rate_hz=44100
+edit/trim=false
+edit/normalize=false
+edit/loop=false
+compress/mode=0

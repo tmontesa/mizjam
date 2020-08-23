@@ -1,5 +1,32 @@
 extends Node
 
+var score = 0
+
+var health_bar_colors = [
+	Color(0,0,0,0.1),		# 0 (bg)
+	Color.crimson, 			# >0
+	Color.chocolate, 		# >100
+	Color.gold, 			# >200
+	Color.lime, 			# >300
+	Color.royalblue, 		# >400
+	Color.darkorchid, 		# >500
+	Color.deeppink, 		# >600
+	Color.webmaroon, 		# >700
+	Color.sienna, 			# >800
+	Color.darkgoldenrod, 	# >900
+	Color.darkolivegreen, 	# >1000
+	Color.darkslateblue, 	# >1100
+	Color.indigo, 			# >1200
+	Color.maroon, 			# >1300
+	Color.lightpink, 		# >1400
+	Color.sandybrown, 		# >1500
+	Color.palegoldenrod, 	# >1600
+	Color.palegreen, 		# >1700
+	Color.powderblue, 		# >1800
+	Color.thistle, 			# >1900
+]
+
+
 enum rarity {
 	COMMON = 0,
 	UNCOMMON = 1,
@@ -9,7 +36,7 @@ enum rarity {
 }
 
 var rarity_color = [
-	Color(0.2, 0.2, 0.2, 1),
+	Color(0.5, 0.5, 0.5, 1),
 	Color(0.2, 0.8, 0.2, 1),
 	Color(0.2, 0.2, 0.8, 1),
 	Color(0.8, 0.0, 0.8, 1),

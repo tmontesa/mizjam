@@ -11,7 +11,7 @@ func update_text(weapon: Node) -> void:
 	weapon_name.text = weapon.title
 	damage.text = str(weapon.damage) + "x" + str(weapon.projectile_amount)
 	accuracy.text = str(weapon.accuracy)
-	type.text = str(weapon.type)
+	type.text = str(weapon.type).capitalize()
 	accuracy.text = str(weapon.accuracy)
 	buildup.text = str(weapon.buildup)
 	delay.text = str(weapon.delay)

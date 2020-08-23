@@ -2,6 +2,9 @@ extends Area2D
 
 signal chain(position_, rotation_, projectile_patterns)
 onready var lifetime_timer = $Lifetime
+onready var audio_player_spawn = $AudioPlayerSpawn
+onready var audio_player_hit = $AudioPlayerHit
+onready var sprite = $Sprite
 
 var damage: float = 0
 
@@ -21,6 +24,11 @@ func _ready():
 	velocity = direction * speed
 	lifetime_timer.wait_time = lifetime
 	lifetime_timer.start()
+	audio_player_spawn.pitch_scale = Global.rng.randf_range(0.6, 1.4)
+	audio_player_spawn.play()
+	if (detonate):
+		modulate = Color(1, 1, 0, 1)
+
 
 func _physics_process(delta: float) -> void:
 	position += velocity
@@ -34,9 +42,10 @@ func _on_hit(body: Node) -> void:
 	if (body.is_in_group("enemy")):
 		body.damage(damage)
 		body.knockback(direction * knockback)
+		audio_player_hit.play()
 
 	if (detonate && !body.is_in_group("player")):
-		lifetime_timer.wait_time = 0.1
+		lifetime_timer.wait_time = 0.2
 		lifetime_timer.start()
-		velocity *= 0.2
+		velocity *= -0.2
 		detonate = false
