@@ -1,0 +1,194 @@
+[gd_scene load_steps=9 format=2]
+
+[ext_resource path="res://PressStart2P.ttf" type="DynamicFontData" id=1]
+[ext_resource path="res://ItemText/ItemText.gd" type="Script" id=2]
+
+[sub_resource type="StyleBoxFlat" id=1]
+bg_color = Color( 0, 0, 0, 0.501961 )
+
+[sub_resource type="StyleBoxFlat" id=7]
+resource_local_to_scene = true
+content_margin_left = 12.0
+content_margin_right = 12.0
+content_margin_top = 8.0
+content_margin_bottom = 8.0
+bg_color = Color( 0.992157, 0, 1, 1 )
+anti_aliasing = false
+
+[sub_resource type="DynamicFont" id=3]
+size = 8
+font_data = ExtResource( 1 )
+
+[sub_resource type="StyleBoxFlat" id=4]
+content_margin_left = 12.0
+content_margin_right = 12.0
+content_margin_top = 8.0
+content_margin_bottom = 8.0
+bg_color = Color( 0, 0, 0, 1 )
+anti_aliasing = false
+
+[sub_resource type="DynamicFont" id=5]
+size = 8
+font_data = ExtResource( 1 )
+
+[sub_resource type="StyleBoxEmpty" id=6]
+content_margin_left = 12.0
+content_margin_right = 12.0
+content_margin_top = 4.0
+content_margin_bottom = 4.0
+
+[node name="ItemText" type="Node2D"]
+script = ExtResource( 2 )
+
+[node name="Panel" type="PanelContainer" parent="."]
+anchor_left = 0.5
+anchor_top = 1.0
+anchor_right = 0.5
+anchor_bottom = 1.0
+margin_left = -76.0
+margin_top = -104.0
+margin_right = 76.0
+grow_horizontal = 2
+grow_vertical = 2
+size_flags_horizontal = 8
+size_flags_vertical = 8
+custom_styles/panel = SubResource( 1 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="PanelContents" type="VBoxContainer" parent="Panel"]
+margin_right = 152.0
+margin_bottom = 104.0
+grow_horizontal = 2
+grow_vertical = 2
+custom_constants/separation = 8
+alignment = 1
+
+[node name="Header" type="HBoxContainer" parent="Panel/PanelContents"]
+margin_right = 152.0
+margin_bottom = 24.0
+custom_constants/separation = 0
+
+[node name="Name" type="Label" parent="Panel/PanelContents/Header"]
+margin_right = 80.0
+margin_bottom = 24.0
+size_flags_horizontal = 3
+custom_styles/normal = SubResource( 7 )
+custom_fonts/font = SubResource( 3 )
+text = "Sword"
+
+[node name="Damage" type="Label" parent="Panel/PanelContents/Header"]
+margin_left = 80.0
+margin_right = 152.0
+margin_bottom = 24.0
+custom_styles/normal = SubResource( 4 )
+custom_fonts/font = SubResource( 5 )
+text = "999x10"
+align = 2
+
+[node name="Stats" type="VBoxContainer" parent="Panel/PanelContents"]
+margin_top = 32.0
+margin_right = 152.0
+margin_bottom = 96.0
+custom_constants/separation = 0
+
+[node name="Type" type="HBoxContainer" parent="Panel/PanelContents/Stats"]
+margin_right = 152.0
+margin_bottom = 16.0
+custom_constants/separation = 0
+
+[node name="Label" type="Label" parent="Panel/PanelContents/Stats/Type"]
+margin_right = 80.0
+margin_bottom = 16.0
+size_flags_horizontal = 3
+custom_styles/normal = SubResource( 6 )
+custom_fonts/font = SubResource( 3 )
+custom_colors/font_color = Color( 1, 1, 1, 0.25098 )
+text = "Type"
+
+[node name="Value" type="Label" parent="Panel/PanelContents/Stats/Type"]
+margin_left = 80.0
+margin_right = 152.0
+margin_bottom = 16.0
+custom_styles/normal = SubResource( 6 )
+custom_fonts/font = SubResource( 3 )
+text = "Hammer"
+align = 2
+
+[node name="Accuracy" type="HBoxContainer" parent="Panel/PanelContents/Stats"]
+margin_top = 16.0
+margin_right = 152.0
+margin_bottom = 32.0
+custom_constants/separation = 0
+
+[node name="Label" type="Label" parent="Panel/PanelContents/Stats/Accuracy"]
+margin_right = 104.0
+margin_bottom = 16.0
+size_flags_horizontal = 3
+custom_styles/normal = SubResource( 6 )
+custom_fonts/font = SubResource( 3 )
+custom_colors/font_color = Color( 1, 1, 1, 0.25098 )
+text = "Accuracy"
+
+[node name="Value" type="Label" parent="Panel/PanelContents/Stats/Accuracy"]
+margin_left = 104.0
+margin_right = 152.0
+margin_bottom = 16.0
+custom_styles/normal = SubResource( 6 )
+custom_fonts/font = SubResource( 3 )
+text = "98%"
+align = 2
+
+[node name="Buildup" type="HBoxContainer" parent="Panel/PanelContents/Stats"]
+margin_top = 32.0
+margin_right = 152.0
+margin_bottom = 48.0
+custom_constants/separation = 0
+
+[node name="Label" type="Label" parent="Panel/PanelContents/Stats/Buildup"]
+margin_right = 80.0
+margin_bottom = 16.0
+size_flags_horizontal = 3
+custom_styles/normal = SubResource( 6 )
+custom_fonts/font = SubResource( 3 )
+custom_colors/font_color = Color( 1, 1, 1, 0.25098 )
+text = "Buildup"
+
+[node name="Value" type="Label" parent="Panel/PanelContents/Stats/Buildup"]
+margin_left = 80.0
+margin_right = 152.0
+margin_bottom = 16.0
+custom_styles/normal = SubResource( 6 )
+custom_fonts/font = SubResource( 3 )
+text = "0.121s"
+align = 2
+
+[node name="Delay" type="HBoxContainer" parent="Panel/PanelContents/Stats"]
+margin_top = 48.0
+margin_right = 152.0
+margin_bottom = 64.0
+custom_constants/separation = 0
+
+[node name="Label" type="Label" parent="Panel/PanelContents/Stats/Delay"]
+margin_right = 80.0
+margin_bottom = 16.0
+size_flags_horizontal = 3
+custom_styles/normal = SubResource( 6 )
+custom_fonts/font = SubResource( 3 )
+custom_colors/font_color = Color( 1, 1, 1, 0.25098 )
+text = "Delay"
+
+[node name="Value" type="Label" parent="Panel/PanelContents/Stats/Delay"]
+margin_left = 80.0
+margin_right = 152.0
+margin_bottom = 16.0
+custom_styles/normal = SubResource( 6 )
+custom_fonts/font = SubResource( 3 )
+text = "0.121s"
+align = 2
+
+[node name="SpacerLol" type="Container" parent="Panel/PanelContents"]
+margin_top = 104.0
+margin_right = 152.0
+margin_bottom = 104.0

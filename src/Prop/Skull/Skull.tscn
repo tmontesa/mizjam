@@ -1,0 +1,17 @@
+[gd_scene load_steps=3 format=2]
+
+[ext_resource path="res://Prop/Prop.tscn" type="PackedScene" id=1]
+[ext_resource path="res://HUD/assets/skull.png" type="Texture" id=2]
+
+
+[node name="Prop" instance=ExtResource( 1 )]
+position = Vector2( -0.0556831, -5.10458 )
+
+[node name="Sprite" parent="." index="0"]
+modulate = Color( 1, 0, 0, 1 )
+position = Vector2( 0, -12.7203 )
+scale = Vector2( 3, 3 )
+texture = ExtResource( 2 )
+
+[node name="CollisionShape" parent="." index="1"]
+polygon = PoolVector2Array( -11.8681, -26.6766, -12.0005, 3.25324, 11.9698, 3.31946, 12.1023, -26.809 )

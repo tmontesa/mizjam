@@ -1,0 +1,29 @@
+[gd_scene load_steps=4 format=2]
+
+[ext_resource path="res://ItemText/ItemText.tscn" type="PackedScene" id=2]
+[ext_resource path="res://Pickup/Pickup.gd" type="Script" id=3]
+
+[sub_resource type="CircleShape2D" id=1]
+radius = 24.0
+
+[node name="Pickup" type="Node2D"]
+script = ExtResource( 3 )
+
+[node name="PickupText" parent="." instance=ExtResource( 2 )]
+visible = false
+position = Vector2( 0, -8 )
+scale = Vector2( 0.4, 0.4 )
+
+[node name="InteractArea" type="Area2D" parent="."]
+
+[node name="InteractShape" type="CollisionShape2D" parent="InteractArea"]
+shape = SubResource( 1 )
+
+[node name="Lifetime" type="Timer" parent="."]
+wait_time = 60.0
+one_shot = true
+[connection signal="body_entered" from="InteractArea" to="." method="_on_area_entry"]
+[connection signal="body_exited" from="InteractArea" to="." method="_on_area_exit"]
+[connection signal="mouse_entered" from="InteractArea" to="." method="_on_mouse_entry"]
+[connection signal="mouse_exited" from="InteractArea" to="." method="_on_mouse_exit"]
+[connection signal="timeout" from="Lifetime" to="." method="on_expiry"]

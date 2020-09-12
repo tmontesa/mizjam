@@ -1,0 +1,12 @@
+[gd_scene load_steps=3 format=2]
+
+[ext_resource path="res://Prop/assets/rock_c.png" type="Texture" id=1]
+[ext_resource path="res://Prop/Prop.tscn" type="PackedScene" id=2]
+
+[node name="Prop" instance=ExtResource( 2 )]
+
+[node name="Sprite" parent="." index="0"]
+texture = ExtResource( 1 )
+
+[node name="CollisionShape" parent="." index="1"]
+polygon = PoolVector2Array( 0.359829, -3.04815, -4.10378, 1.23868, -0.214695, 4.06711, 3.98375, -0.352305 )
